@@ -2,9 +2,10 @@
 ------------------------------
 
 ##### Executando o arquivo MongoDB e arquivo Mongo
+*Dentro da pasta bin*
 
 ```
-$ cd /home/milenevlacerda/Projects/Alura/MongoDB/db/mongo/bin
+$ cd /home/milenevlacerda/Projects/Alura/MongoDB/db/mongodb/bin
 $ ./mongod --dbpath <caminhoDoDiretorioDb>
 
 ```
@@ -21,6 +22,7 @@ export PATH=$PATH:<caminhoDoDiretorioDbBin>
 
 ###### Acessando o cliente mongo
 -------------------------------
+
 ```
 $ mongo
 ```
@@ -60,12 +62,26 @@ db.alunos.insert(
 );
 ```
 
-
-
 ###### Encontrando dados
 -------------------------------
 ```
 db.alunos.find();
+db.alunos.find().pretty();
+```
+-------------------------------
+
+```
+db.alunos.find(
+    {
+        nome: "Milene"
+    }
+);
+
+db.alunos.find(
+    {
+        "habilidades.nome": "Inglês"
+    }    
+);
 ```
 
 
