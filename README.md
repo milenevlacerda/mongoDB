@@ -84,6 +84,31 @@ db.alunos.find(
 );
 ```
 
+>Exemplo de OR e AND
+
+```
+db.alunos.find({
+    $or : [
+        { "curso.nome": "Sistemas para Internet" },
+        { "curso.nome": "Fisioterapia" }    
+    ],
+    "nome": "Evelyn"
+});
+```
+
+>Exemplo IN
+
+```
+db.alunos.find({
+    "curso.nome": {
+        $in: [
+            "Sistemas de Informação",
+            "Fisioterapia"
+        ]
+    }
+});
+```
+
 
 
 ###### Removendo determinado dado
@@ -93,4 +118,47 @@ db.alunos.find(
 db.alunos.remove({
     "_id": ObjectId("586f0ddd10489caadd1fa54e")
 });
+```
+
+
+
+###### Atualizando dados
+-------------------------------
+
+>Set
+
+```
+db.alunos.update(
+    { "curso.nome": "Sistemas de Informação" },
+    {
+        $set: {
+            "curso.nome": "Sistemas para Internet"
+        }    
+    },
+    {
+        multi: true
+    }     
+)
+```
+
+>Push
+
+```
+db.alunos.update(
+    { "_id" : ObjectId("586ff43fe82d510ebf3ea301") },
+    {
+        $push: {
+            notas: 9.5
+        }    
+    }
+)
+
+db.alunos.update(
+    { "_id" : ObjectId("586ff43fe82d510ebf3ea301") },
+    {
+        $push: {
+            notas: { $each: [ 8.3, 7 ] }
+        }    
+    }
+)
 ```
