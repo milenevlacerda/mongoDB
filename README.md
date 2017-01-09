@@ -1,7 +1,7 @@
 # Alura MongoDB
 ------------------------------
 
-##### Executando o arquivo MongoDB e arquivo Mongo
+## Executando o arquivo MongoDB e arquivo Mongo
 *Dentro da pasta bin*
 
 ```
@@ -12,7 +12,7 @@ $ ./mongod --dbpath <caminhoDoDiretorioDb>
 
 
 
-###### Modificando a variável de ambiente no .bash_profile
+## Modificando a variável de ambiente no .bash_profile
 -------------------------------
 ```
 export PATH=$PATH:<caminhoDoDiretorioDbBin>
@@ -20,7 +20,7 @@ export PATH=$PATH:<caminhoDoDiretorioDbBin>
 
 
 
-###### Acessando o cliente mongo
+## Acessando o cliente mongo
 -------------------------------
 
 ```
@@ -29,16 +29,18 @@ $ mongo
 
 
 
-###### Criando coleções
+## Criando coleções
 -------------------------------
+
 ```
 db.createCollection( "alunos" );
 ```
 
 
-
-###### Inserindo dados
+## Inserindo dados
 -------------------------------
+
+
 ```
 db.alunos.insert(
     {
@@ -62,13 +64,20 @@ db.alunos.insert(
 );
 ```
 
-###### Encontrando dados
+
+
+## Encontrando dados
 -------------------------------
+
+
 ```
 db.alunos.find();
 db.alunos.find().pretty();
 ```
+
+
 -------------------------------
+
 
 ```
 db.alunos.find(
@@ -77,14 +86,25 @@ db.alunos.find(
     }
 );
 
+
 db.alunos.find(
     {
         "habilidades.nome": "Inglês"
     }    
 );
+
+
+db.alunos.findOne(
+    {
+        notas:  { $gt: 5}
+    }    
+);
 ```
 
->Exemplo de OR e AND
+
+## Exemplo de OR e AND
+-------------------------------
+
 
 ```
 db.alunos.find({
@@ -96,7 +116,10 @@ db.alunos.find({
 });
 ```
 
->Exemplo IN
+
+## Exemplo de IN
+-------------------------------
+
 
 ```
 db.alunos.find({
@@ -111,8 +134,9 @@ db.alunos.find({
 
 
 
-###### Removendo determinado dado
+## Removendo determinado dado
 -------------------------------
+
 
 ```
 db.alunos.remove({
@@ -122,10 +146,12 @@ db.alunos.remove({
 
 
 
-###### Atualizando dados
+## Atualizando dados
 -------------------------------
 
->Set
+
+#### Set
+
 
 ```
 db.alunos.update(
@@ -141,7 +167,9 @@ db.alunos.update(
 )
 ```
 
->Push
+
+#### Push
+
 
 ```
 db.alunos.update(
@@ -161,4 +189,39 @@ db.alunos.update(
         }    
     }
 )
+```
+
+
+#### Find com operadores
+
+
+```
+db.alunos.find({
+    notas: { $gt: 5}
+})
+```
+
+>$gt: greater than
+
+
+
+## Ordenando resultados
+-------------------------------
+
+
+```
+db.alunos.find().sort( { "nome": 1 } )
+```
+
+
+>Ordem crescente 1
+
+>Ordem decrescente -1
+
+
+
+#### Limitando resultados
+
+```
+db.alunos.find().sort( { "nome": 1 } ).limit(3)
 ```
