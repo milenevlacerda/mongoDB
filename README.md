@@ -49,6 +49,12 @@ db.alunos.insert(
         curso: {
             nome: "Sistemas para Internet"
         },
+        localizacao: {
+            endereco: "Dona Augusta, 202",
+            cidade: "Charqueadas, RS",
+            coordinates: [ -30.061885, -51.226447 ],
+            type: "Point"
+        },
         notas: [ 10.0, 9.0, 4.5 ],
         habilidades: [
             {
