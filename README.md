@@ -220,8 +220,46 @@ db.alunos.find().sort( { "nome": 1 } )
 
 
 
-#### Limitando resultados
+## Limitando resultados
+
 
 ```
 db.alunos.find().sort( { "nome": 1 } ).limit(3)
+```
+
+
+
+## Importando dados de outros arquivos, Exemplo:
+
+
+```
+mongoimport -c alunos --jsonArray < alunos.json
+```
+
+
+## Busca por proximidade
+
+```
+db.alunos.createIndex({
+    localizacao: "2dsphere"
+})
+```
+
+```
+db.alunos.aggregate([
+    {
+        $geoNear: {
+            near: {
+                coordinates: [ -30.061885, -51.226447 ],
+                type: "Point"
+            },
+            distanceField: "distancia.calculada",
+            spherical: true,
+            num: 2
+        }
+    },
+    {
+        $skip: 1
+    }
+])
 ```
